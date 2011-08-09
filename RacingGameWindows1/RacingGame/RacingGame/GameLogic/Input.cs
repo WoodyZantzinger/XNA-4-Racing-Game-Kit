@@ -44,6 +44,12 @@ namespace RacingGame.GameLogic
         /// </summary>
         private static bool mouseDetected = false;
 
+
+        /// <summary>
+        /// Is a controller connected?
+        /// </summary>
+        private static bool phoneDetected = false;
+
         /// <summary>
         /// Keyboard state, set every frame in the Update method.
         /// Note: KeyboardState is a class and not a struct,
@@ -56,6 +62,8 @@ namespace RacingGame.GameLogic
         /// </summary>
         private static KeyboardState keyboardState =
             Microsoft.Xna.Framework.Input.Keyboard.GetState();
+
+        private static InputListeningServer InputServer = new InputListeningServer();
 
         /// <summary>
         /// Keys pressed last frame, for comparison if a key was just pressed.
@@ -899,6 +907,29 @@ namespace RacingGame.GameLogic
                     gamePadStateLastFrame.Buttons.Back == ButtonState.Released;
             }
         }
+        #endregion
+
+        #region Phone Properties
+        public static int getTilt()
+        {
+            return InputServer.tilt;
+        }
+
+        public static bool isConnected()
+        {
+            return InputServer.isConnected;
+        }
+
+        public static bool PhoneLeft()
+        {
+            return InputServer.left;
+        }
+
+        public static bool PhoneRight()
+        {
+            return InputServer.right;
+        }
+
         #endregion
 
         #region Update

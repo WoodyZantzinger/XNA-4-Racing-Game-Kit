@@ -113,6 +113,7 @@
     <Compile Include="GameLogic\CarPhysics.cs" />
     <Compile Include="GameLogic\ChaseCamera.cs" />
     <Compile Include="GameLogic\Input.cs" />
+    <Compile Include="GameLogic\InputListeningServer.cs" />
     <Compile Include="GameLogic\Physics\SpringPhysicsObject.cs" />
     <Compile Include="GameLogic\Player.cs" />
     <Compile Include="GameLogic\Replay.cs" />

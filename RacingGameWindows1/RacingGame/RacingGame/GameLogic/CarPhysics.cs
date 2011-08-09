@@ -163,7 +163,7 @@ namespace RacingGame.GameLogic
         /// The acceleration influcences the current speed of the car.
         /// </summary>
         protected static float maxAccelerationPerSec =
-            DefaultMaxAccelerationPerSec * 0.85f;
+            DefaultMaxAccelerationPerSec * 1.85f;
 
         /// <summary>
         /// Set car variables from car model. Called from CarSelection screen.
@@ -545,6 +545,12 @@ namespace RacingGame.GameLogic
                     rotationChange -= effectiveSensitivity *
                         MaxRotationPerSec * moveFactor / 1.5f;
             }
+            if (Input.isConnected())
+            {
+                rotationChange -= effectiveSensitivity *
+                    ((float)Input.getTilt() / 1000) *
+                    MaxRotationPerSec * moveFactor / 1.12345f;
+            }
 
             float maxRot = MaxRotationPerSec * moveFactor * 1.25f;
 
@@ -645,6 +651,17 @@ namespace RacingGame.GameLogic
                 else if (Input.GamePad.DPad.Down == ButtonState.Pressed)
                     newAccelerationForce -=
                         maxAccelerationPerSec;
+            }
+            else if (Input.isConnected())
+            {
+                if (Input.PhoneLeft())
+                {
+                    newAccelerationForce -= maxAccelerationPerSec;// *moveFactor;
+                }
+                if (Input.PhoneRight())
+                {
+                    newAccelerationForce += maxAccelerationPerSec;// *moveFactor;
+                }
             }
 
             // Limit acceleration (but drive as fast forwards as possible if we
